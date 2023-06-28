@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import MenuItems from "./components/MenuItems";
 import WelcomeScreen from "./components/WelcomeScreen";
 import UITab from "./components/tabBottom/UITab";
+import ProductDetail from "./components/ProductDetail"
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -19,7 +20,8 @@ export default function App() {
         name={'Login'}
         component={WelcomeScreen}
       /> */}
-      <Stack.Screen name={'UITab'} component={UITab} />
+      <Stack.Screen name={'Assignment'} component={UITab} />
+      <Stack.Screen name={'ProductDetail'} component={ProductDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

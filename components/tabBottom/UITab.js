@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import IntroPage from "../IntroPage";
 import MenuItems from "../MenuItems";
@@ -13,7 +13,7 @@ const screenOptions = ({ route }) => ({
   tabBarInactiveTintColor: "gray",
   tabBarIcon: ({ focused, color, size }) => {
     let screenName = route.name;
-    const iconName = screenName == "MenuItems" ? "align-center" : "user";
+    const iconName = screenName == "MenuItems" ? "align-center" : "cart-plus";
     return <Icon name={iconName} size={23} />;
   },
 });
@@ -22,114 +22,124 @@ const UITab = (props) => {
   const [products, setProducts] = useState([
     {
       id: 1,
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnVy-2ip2a7n8CaBfTuYs2bYe7Z2-jOAR7mrPzeH8PlwM8W7vQw6cO0gfm-eiELCdqyNo&usqp=CAU",
+      url: "https://www.sony.com.vn/image/c0d5f94fb6eaca7bf75bffe64874c195?fmt=pjpeg&bgcolor=FFFFFF&bgc=FFFFFF&wid=2515&hei=1320",
       price: 675.4,
-      productName: "Samsung SC6573",
+      productName: "Sony LinkBuds S",
       specification: [
-        "Dry clean",
-        "Cyclone filter",
-        "Convenience cord storage",
+        "Thoải mái",
+        "Gọn nhẹ",
+        "Nghe âm thanh xung quanh rõ hơn",
       ],
       review: 19,
       star: 5,
     },
     {
       id: 2,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-1.jpg",
-      price: 88,
-      productName: "Xiaomi ss39",
-      specification: ["Electric motor", "Dust filter bags", "Charging port"],
+      url: "https://product.hstatic.net/200000722513/product/thumbtainghe-recovered_78f62db1124e4716a12f057d1a73f1c8_54d79267e0374aa8a441c68dc4c2e094.png",
+      price: 158,
+      productName: "Gaming Headphone Corsair",
+      specification: ["Cao su chống trượt", "Độ bền cao", "RGB 16.8 triệu màu"],
       review: 29,
       star: 4,
     },
     {
       id: 3,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-5.jpg",
+      url: "https://songlongmedia.com/media/lib/22-02-2022/tainghesonylinkbudswf-l900trulywirelesssonglongmedia1.jpg",
       price: 3129,
-      productName: "Xiaomi KY255",
+      productName: "SONY LINKBUDS WF-L900",
       specification: [
-        "Small size, capacity",
-        "Dust filter bags",
-        "Charging port",
+        "Nhỏ gọn",
+        "AI tự động phân tích và giảm ồn",
+        "Thiết kế lạ mắt đem đến sự trải nghiệm thú vị.",
       ],
       review: 39,
       star: 2,
     },
     {
       id: 4,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-2.jpg",
+      url: "https://cdn2.cellphones.com.vn/x/media/catalog/product/t/a/tai-nghe-khong-day-soul-s-live-30-6_1.png",
       price: 55,
-      productName: "Robot KY255",
+      productName: "Soul S-LIVE 30",
       specification: [
-        "Dust filter bags",
-        "Charging port",
-        "Small size, capacity",
+        "Trải nghiệm chất âm sống động",
+        "Thời lượng sử dụng hợp lý, phù hợp",
+        "Phù hợp để luyện tập thể thao",
       ],
       review: 79,
       star: 1,
     },
     {
       id: 5,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-4.jpg",
+      url: "https://3kshop.vn/wp-content/uploads/2020/12/DDA24146-9E89-49E0-8CB0-C5068226AF5F.png",
       price: 109,
-      productName: "LG HT239",
-      specification: ["Dust filter bags", "Charging port", "Electric motor"],
+      productName: "Apple AirPods Max",
+      specification: ["Thiết kế chụp tai êm ái", "Chất liệu cao cấp", "Pin dung lượng cao sử dụng nhiều giờ, hỗ trợ sạc nhanh"],
       review: 59,
       star: 1,
     },
     {
       id: 6,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-1.jpg",
+      url: "https://cdn2.cellphones.com.vn/x/media/catalog/product/b/u/buds4pro_tr.png",
       price: 56,
-      productName: "LG HT239",
+      productName: "Xiaomi Redmi Buds 4 Pro",
       specification: [
-        "Save time",
-        "Dust box",
-        "Some other machine details such as filter core",
+          "Nhỏ gọn",
+          "AI tự động phân tích và giảm ồn",
+          "Thiết kế lạ mắt.",
       ],
       review: 25,
       star: 2,
     },
     {
       id: 7,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-1.jpg",
+      url: "https://hanoicomputercdn.com/media/product/68140_tai_nghe_e_dra_eh414_pro_usb_7_1_0001_2.jpg",
       price: 56,
-      productName: "KOG HT239",
-      specification: [
-        "Save time",
-        "Dust box",
-        "Some other machine details such as filter core",
-      ],
+      productName: "E-DRA EH414 PRO",
+      specification: ["Thiết kế chụp tai êm ái", "Chất liệu cao cấp", "Pin dung lượng cao, hỗ trợ sạc nhanh."],
       review: 25,
       star: 2,
     },
     {
       id: 8,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-1.jpg",
+      url: "https://hanoicomputercdn.com/media/product/53849_tuf_gaming_h3_red_05.png",
       price: 56,
-      productName: "GG HT239",
-      specification: [
-        "Save time",
-        "Dust box",
-        "Some other machine details such as filter core",
-      ],
+      productName: "ASUS TUF GAMING H3 ",
+      specification: ["Cao su chống trượt", "Độ bền cao", "RGB 16.8 triệu màu"],
       review: 25,
       star: 2,
     },
     {
       id: 9,
-      url: "https://tearu.vn/wp-content/uploads/2021/10/may-hut-bui-mini-cam-tay-1.jpg",
+      url: "https://hanoicomputercdn.com/media/product/69735_tai_nghe_hp_hyperx_stinger_black_ii_519t1aa_0004_5.jpg",
       price: 56,
-      productName: "GF HT239",
+      productName: "HYPERX STINGER",
       specification: [
-        "Dust box",
-        "Some other machine details such as filter core",
+        "Chống ồn",
+        "Kết nối ổn định",
       ],
       review: 25,
       star: 2,
     },
   ]);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
+
+  useEffect(() => {
+    const loadFavoriteProducts = async () => {
+      try {
+        const savedFavoriteProducts = await AsyncStorage.getItem(
+          "favoriteProducts"
+        );
+        if (savedFavoriteProducts) {
+          const parsedFavoriteProducts = JSON.parse(savedFavoriteProducts);
+          setFavoriteProducts(parsedFavoriteProducts);
+        }
+      } catch (error) {
+        console.log("Error loading favorite products:", error);
+      }
+    };
+
+    loadFavoriteProducts();
+  }, []);
 
   const removeFavoriteItem = async (itemId) => {
     const updatedFavorites = favoriteProducts.filter(
@@ -181,11 +191,12 @@ const UITab = (props) => {
           <MenuItems
             products={products}
             setProducts={setProducts}
+            favoriteProducts={favoriteProducts}
             setFavoriteProducts={setFavoriteProducts}
           />
         )}
       </Tab.Screen>
-      <Tab.Screen name={"IntroPage"} options={{ tabBarLabel: "Intro" }}>
+      <Tab.Screen name={"Cart"} options={{ tabBarLabel: "Cart" }}>
         {() => (
           <IntroPage
             favoriteProducts={favoriteProducts}

@@ -6,21 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const IntroPage = ({ favoriteProducts, onRemoveItem, onDeleteAllItems }) => {
   // const [products, setProducts] = useState([]);
 
-  // useEffect(() => {
-  //   const loadFavoriteProducts = async () => {
-  //     try {
-  //       const savedFavoriteProducts = await AsyncStorage.getItem('favoriteProducts');
-  //       if (savedFavoriteProducts) {
-  //         const parsedFavoriteProducts = JSON.parse(savedFavoriteProducts);
-  //         setProducts(parsedFavoriteProducts);
-  //       }
-  //     } catch (error) {
-  //       console.log('Error loading favorite products:', error);
-  //     }
-  //   };
 
-  //   loadFavoriteProducts();
-  // }, []);
 
   const removeFavoriteItem = async (itemId) => {
     // const updatedProducts = products.map((item) => {

@@ -31,7 +31,7 @@ const GridItem = props => {
 <Image
   style={{
     width: 90,
-    height: 100,
+    height: 100,  
     resizeMode: 'cover',
     padding: 5,
     borderRadius: 20,
@@ -46,7 +46,7 @@ const GridItem = props => {
         <Text
           style={{
             color: 'black',
-            fontSize: 10,
+            fontSize: 18,
             flex: 1,
             textAlign: 'right',
             paddingRight: 5,
@@ -57,7 +57,7 @@ const GridItem = props => {
       <Text
         style={{
           color: 'red',
-          fontSize: 15,
+          fontSize: 18,
           fontWeight: 'bold',
           marginHorizontal: 10,
           marginTop: 5,
@@ -70,7 +70,7 @@ const GridItem = props => {
             key={specification}
             style={{
               color: 'black',
-              fontSize: 12,
+              fontSize: 15,
               paddingHorizontal: 5,
               paddingBottom: 5,
             }}>
@@ -85,7 +85,7 @@ const GridItem = props => {
           <Icon
             name="heart"
             style={{marginEnd: 5}}
-            size={22}
+            size={30}
             color={
               item.isSaved == undefined || item.isSaved == false
                 ? 'gray'
@@ -98,10 +98,10 @@ const GridItem = props => {
                 item.isSaved == undefined || item.isSaved == false
                   ? 'gray'
                   : 'red',
-              fontSize: 14 * 0.8,
+              fontSize: 12,
               width: 50,
             }}>
-            Saved for later
+            Saved to cart
           </Text>
         </TouchableOpacity>
         <View
